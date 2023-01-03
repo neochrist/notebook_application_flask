@@ -1,11 +1,13 @@
 from flask import Flask
 from flask import request, jsonify
 import pymysql
+import os
 
 app = Flask(__name__)
 
 # Set up the database connection
-connection = pymysql.connect(host="localhost", user="neochrist", password="pass", db="test4")
+connection = pymysql.connect(host=os.environ['HOST'], user=os.environ['USER'], 
+                                            password=os.environ['PASSWORD'], db=os.environ['DATABASE'] )
 
 # Create a route to return all persons
 @app.route("/persons", methods=["GET"])
